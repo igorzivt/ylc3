@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Busters! 🦸‍♀️ | Project Ideas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* This sets up the basic font size. We can change it later with our buttons. */
+        :root {
+            --base-font-size: 16px;
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            background-color: #f0f8ff; /* A light, soft blue */
+            color: #333; /* Dark gray for text */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s; /* Makes color changes smooth */
+            font-size: var(--base-font-size);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-family: 'Fredoka One', cursive;
+            color: #ff6347; /* Tomato Red */
+            font-size: 3.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1); /* A small shadow to make it pop */
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            background-color: #fff8e1; /* Light yellow background */
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px dashed #ffb74d; /* Orange border */
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+        
+        /* ---------- Controls for Dark Mode and Text Size ---------- */
+        .controls {
+            margin-bottom: 30px;
+            display: flex; /* Puts buttons in a row */
+            justify-content: center; /* Centers the buttons */
+            align-items: center;
+            gap: 15px; /* Space between buttons */
+            flex-wrap: wrap; /* Lets buttons wrap to the next line on small screens */
+        }
+
+        .controls button {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer; /* Shows a hand when you hover over it */
+            background-color: #fff;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .controls button:hover {
+            transform: scale(1.1); /* Makes the button a little bigger on hover */
+        }
+
+        #dark-mode-toggle {
+            background-color: #2c3e50;
+            color: #fff;
+        }
+
+        #increase-text, #decrease-text {
+            background-color: #1abc9c; /* Teal color */
+            color: #fff;
+            width: 50px;
+        }
+
+
+        .cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+            padding: 25px;
+            width: 300px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px); /* Moves the card up slightly on hover */
+            box-shadow: 8px 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .card h2 {
+            font-family: 'Fredoka One', cursive;
+            margin-top: 0;
+            font-size: 1.8em;
+            color: #1e90ff; /* Dodger Blue */
+            border-bottom: 3px solid #ffd700; /* Gold */
+            padding-bottom: 10px;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        
+        .card-section {
+            margin-bottom: 20px;
+        }
+
+        .card-section p {
+            margin: 5px 0;
+            line-height: 1.5; /* Adds space between lines of text */
+        }
+        
+        .card-section strong {
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        .plan h3 {
+            font-family: 'Fredoka One', cursive;
+            color: #32cd32; /* Lime Green */
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+
+        .plan ul {
+            list-style-type: '✅'; /* The emoji used for the list */
+            padding-left: 20px;
+        }
+
+        .plan li {
+            padding-left: 10px;
+            margin-bottom: 8px;
+        }
+
+        /* Fun Colors for Cards */
+        .card:nth-child(5n+1) { border-top: 10px solid #ff6347; }
+        .card:nth-child(5n+2) { border-top: 10px solid #ffd700; }
+        .card:nth-child(5n+3) { border-top: 10px solid #32cd32; }
+        .card:nth-child(5n+4) { border-top: 10px solid #1e90ff; }
+        .card:nth-child(5n+5) { border-top: 10px solid #9370db; }
+        
+        /* ---------- DARK MODE STYLES ---------- */
+        body.dark-mode {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+        
+        body.dark-mode header h1 { color: #e74c3c; }
+        body.dark-mode header p {
+            background-color: #34495e;
+            border-color: #f1c40f;
+            color: #ecf0f1;
+        }
+        body.dark-mode .card {
+            background-color: #34495e;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+        }
+        body.dark-mode .card:hover { box-shadow: 8px 8px 20px rgba(0,0,0,0.5); }
+        body.dark-mode .card h2 {
+            color: #5dade2;
+            border-bottom-color: #f1c40f;
+        }
+        body.dark-mode .card-section strong { color: #f1c40f; }
+        body.dark-mode .plan h3 { color: #2ecc71; }
+        body.dark-mode .plan ul { list-style-type: '🌟'; }
+        body.dark-mode .controls button {
+             background-color: #4e657e;
+             color: #ecf0f1;
+             box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+        }
+        body.dark-mode #dark-mode-toggle {
+            background-color: #f1c40f;
+            color: #2c3e50;
+        }
+
+        /* Responsive design (for small screens like phones) */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.5em; }
+            .card { width: 90%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Habit Busters! 🦸‍♂️💡</h1>
+            <p>
+                Hi there! Need ideas for your project? You're in the right place! ✨<br>
+                Look at these examples to help you think. Remember the <strong>Habit Loop: Cue ➡️ Routine ➡️ Reward</strong>. Let's go!
+            </p>
+        </header>
+        
+        <div class="controls">
+            <button id="decrease-text" title="Make Text Smaller">A-</button>
+            <button id="increase-text" title="Make Text Bigger">A+</button>
+            <button id="dark-mode-toggle" title="Switch between Dark and Light Mode">🌙 Dark Mode</button>
+        </div>
+
+
+        <div class="cards-grid">
+
+            <!-- Example 1 -->
+            <div class="card">
+                <h2>Biting Nails 💅</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Feeling nervous or bored. 😟</p>
+                    <p><strong>Routine (the action):</strong> I bite my fingernails.</p>
+                    <p><strong>Reward (the good feeling):</strong> It gives me something to do and distracts me.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Put bad-tasting polish on nails.</li><li>Keep a fidget toy in my pocket.</li></ul></div>
+            </div>
+
+            <!-- Example 2 -->
+            <div class="card">
+                <h2>Late-Night Phone Time 📱</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Getting into bed. 🛌</p>
+                    <p><strong>Routine (the action):</strong> I scroll on my phone for a long time.</p>
+                    <p><strong>Reward (the good feeling):</strong> It's fun and I see what friends are doing.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Charge my phone in another room.</li><li>Read a book for 15 minutes instead.</li></ul></div>
+            </div>
+
+            <!-- Example 3 -->
+            <div class="card">
+                <h2>Eating Junk Food 🍿</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Feeling hungry after school. 😋</p>
+                    <p><strong>Routine (the action):</strong> I grab a bag of chips or candy.</p>
+                    <p><strong>Reward (the good feeling):</strong> The yummy, sugary, or salty taste!</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Ask parents to buy healthy snacks.</li><li>Drink a glass of water first.</li></ul></div>
+            </div>
+            
+            <!-- Example 4 -->
+            <div class="card">
+                <h2>Forgetting Homework 📚</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Getting home from school. 🏡</p>
+                    <p><strong>Routine (the action):</strong> I play video games or watch TV right away.</p>
+                    <p><strong>Reward (the good feeling):</strong> I get to relax immediately (right away).</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Do homework first, then play.</li><li>Reward myself with game time *after* homework is done.</li></ul></div>
+            </div>
+
+            <!-- Example 5 -->
+            <div class="card">
+                <h2>Clothes on the Floor 👕</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Taking off clothes for bed. 🌙</p>
+                    <p><strong>Routine (the action):</strong> I drop clothes on the floor.</p>
+                    <p><strong>Reward (the good feeling):</strong> It's fast and easy.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Put my laundry basket close by.</li><li>Make it a game: "shoot" clothes into the basket.</li></ul></div>
+            </div>
+
+            <!-- Example 6 -->
+            <div class="card">
+                <h2>Interrupting People 🤫</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Getting an exciting idea while someone talks. 💡</p>
+                    <p><strong>Routine (the action):</strong> I say my idea right away.</p>
+                    <p><strong>Reward (the good feeling):</strong> I don't forget my idea!</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Take a deep breath and wait.</li><li>Silently count to three before I speak.</li></ul></div>
+            </div>
+
+            <!-- Example 7 -->
+            <div class="card">
+                <h2>Cracking My Knuckles 💥</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> My hands feel stiff or I'm feeling fidgety.</p>
+                    <p><strong>Routine (the action):</strong> I push my fingers to make them "pop".</p>
+                    <p><strong>Reward (the good feeling):</strong> The popping sound and feeling of release.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Squeeze a stress ball instead.</li><li>Gently stretch my fingers.</li></ul></div>
+            </div>
+            
+            <!-- Example 8 -->
+            <div class="card">
+                <h2>Slouching at My Desk 🚶</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Sitting down to do homework or play games. 🪑</p>
+                    <p><strong>Routine (the action):</strong> My back and shoulders curve forward.</p>
+                    <p><strong>Reward (the good feeling):</strong> It feels comfortable and relaxed.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Put a sticky note on my screen that says "Sit Tall!"</li><li>Set an alarm to check my posture (how I'm sitting).</li></ul></div>
+            </div>
+            
+            <!-- Example 9 -->
+            <div class="card">
+                <h2>Procrastinating (Putting things off) ⏳</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Getting a big school project. 😫</p>
+                    <p><strong>Routine (the action):</strong> I decide to do it "later" and do something fun.</p>
+                    <p><strong>Reward (the good feeling):</strong> I avoid the hard work for a little while.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Break the project into tiny, easy steps.</li><li>Do just one tiny step right away (the "5-Minute Rule").</li></ul></div>
+            </div>
+
+            <!-- Example 10 -->
+            <div class="card">
+                <h2>Complaining a Lot 😩</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Something doesn't go my way. 🌧️</p>
+                    <p><strong>Routine (the action):</strong> I complain about the problem.</p>
+                    <p><strong>Reward (the good feeling):</strong> It feels good to let out my frustration.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Challenge myself to find one good thing about the situation.</li><li>Instead of complaining, think of one possible solution.</li></ul></div>
+            </div>
+
+            <!-- --- NEW TEENAGER-FOCUSED EXAMPLES START HERE --- -->
+            
+            <!-- Example 11 -->
+            <div class="card">
+                <h2>Comparing Myself on Social Media 🤳</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Opening Instagram or TikTok. 😟</p>
+                    <p><strong>Routine (the action):</strong> I scroll and see others' "perfect" lives and feel bad about mine.</p>
+                    <p><strong>Reward (the good feeling):</strong> I feel connected, but it also makes me feel down.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Remind myself it's a "highlight reel," not real life.</li><li>Unfollow accounts that make me feel bad.</li></ul></div>
+            </div>
+            
+            <!-- Example 12 -->
+            <div class="card">
+                <h2>Skipping Breakfast 🍳</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Waking up late or feeling rushed in the morning. 🏃</p>
+                    <p><strong>Routine (the action):</strong> I run out the door without eating anything.</p>
+                    <p><strong>Reward (the good feeling):</strong> I get a few extra minutes of sleep.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Prepare something the night before (like overnight oats).</li><li>Grab something simple like a banana or granola bar.</li></ul></div>
+            </div>
+            
+            <!-- Example 13 -->
+            <div class="card">
+                <h2>Drinking Too Much Soda 🥤</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Eating a meal, feeling thirsty, or seeing a vending machine.</p>
+                    <p><strong>Routine (the action):</strong> I grab a soda or energy drink.</p>
+                    <p><strong>Reward (the good feeling):</strong> The sugary taste and the caffeine boost.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Always carry a reusable water bottle.</li><li>Try flavored seltzer water instead for the fizz.</li></ul></div>
+            </div>
+
+            <!-- Example 14 -->
+            <div class="card">
+                <h2>Gossiping About Others 🗣️</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Being in a group of friends and feeling bored.</p>
+                    <p><strong>Routine (the action):</strong> I say something negative about someone who isn't there.</p>
+                    <p><strong>Reward (the good feeling):</strong> I feel included (part of the group) and it's exciting.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Change the subject to something positive.</li><li>Say something nice about that person instead.</li></ul></div>
+            </div>
+
+            <!-- Example 15 -->
+            <div class="card">
+                <h2>Negative Self-Talk 🧠</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Making a mistake or getting a bad grade.</p>
+                    <p><strong>Routine (the action):</strong> I think, "I'm so stupid," or "I can't do anything right."</p>
+                    <p><strong>Reward (the good feeling):</strong> None, really. It just becomes a bad mental habit.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Ask myself, "Would I say this to my best friend?"</li><li>Replace the bad thought with "It's okay, everyone makes mistakes."</li></ul></div>
+            </div>
+
+            <!-- Example 16 -->
+            <div class="card">
+                <h2>Being a "Couch Potato" 🛋️</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Getting home from school with free time.</p>
+                    <p><strong>Routine (the action):</strong> I lie on the couch and watch shows for hours.</p>
+                    <p><strong>Reward (the good feeling):</strong> It's super relaxing and entertaining.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Plan a fun activity, like a walk with a friend.</li><li>Do just 15 minutes of exercise before screen time.</li></ul></div>
+            </div>
+
+            <!-- Example 17 -->
+            <div class="card">
+                <h2>Using Filler Words ("Like," "Um") 💬</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Feeling nervous while talking or trying to think.</p>
+                    <p><strong>Routine (the action):</strong> I say "like," "um," or "you know..." too much.</p>
+                    <p><strong>Reward (the good feeling):</strong> It fills the silence and gives my brain a second to think.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Practice pausing silently instead of saying "um."</li><li>Ask a friend to gently point it out when I do it.</li></ul></div>
+            </div>
+
+            <!-- Example 18 -->
+            <div class="card">
+                <h2>Messy Backpack / Locker 🎒</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> The bell rings at the end of class.</p>
+                    <p><strong>Routine (the action):</strong> I quickly shove all my papers and books into my bag.</p>
+                    <p><strong>Reward (the good feeling):</strong> I can leave class faster and talk to my friends.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Use colored folders for each subject.</li><li>Take 30 seconds to clean out my bag every night.</li></ul></div>
+            </div>
+
+            <!-- Example 19 -->
+            <div class="card">
+                <h2>Being Late for Things ⏰</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> It's time to leave for school or to meet friends.</p>
+                    <p><strong>Routine (the action):</strong> I try to do "one last thing" before I go.</p>
+                    <p><strong>Reward (the good feeling):</strong> I feel like I'm not wasting any time.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Set an alarm for 10 minutes *before* I need to leave.</li><li>Get my clothes and bag ready the night before.</li></ul></div>
+            </div>
+
+            <!-- Example 20 -->
+            <div class="card">
+                <h2>Spending Money Without Thinking 💸</h2>
+                <div class="card-section">
+                    <p><strong>Cue (the trigger):</strong> Feeling bored, seeing an online ad, or getting allowance.</p>
+                    <p><strong>Routine (the action):</strong> I buy something I don't really need.</p>
+                    <p><strong>Reward (the good feeling):</strong> The excitement of getting something new.</p>
+                </div>
+                <div class="plan"><h3>My Plan to Stop! 🚀</h3><ul><li>Wait 24 hours before buying anything over $10.</li><li>Make a budget and track my spending.</li></ul></div>
+            </div>
+
+        </div>
+    </div>
+
+<script>
+    // This part is JavaScript. It makes the buttons work.
+    // The code inside here will only run after the whole webpage has finished loading.
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- CODE FOR THE DARK MODE BUTTON ---
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                darkModeToggle.innerHTML = '☀️ Light Mode';
+            } else {
+                body.classList.remove('dark-mode');
+                darkModeToggle.innerHTML = '🌙 Dark Mode';
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'light');
+                applyTheme('light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+                applyTheme('dark');
+            }
+        });
+
+
+        // --- CODE FOR THE TEXT SIZE BUTTONS (A+ and A-) ---
+        const increaseTextBtn = document.getElementById('increase-text');
+        const decreaseTextBtn = document.getElementById('decrease-text');
+        const rootElement = document.documentElement; 
+
+        function getCurrentFontSize() {
+            return parseFloat(getComputedStyle(rootElement).getPropertyValue('--base-font-size'));
+        }
+
+        increaseTextBtn.addEventListener('click', () => {
+            let currentSize = getCurrentFontSize();
+            if (currentSize < 24) {
+                const newSize = currentSize + 1;
+                rootElement.style.setProperty('--base-font-size', `${newSize}px`);
+            }
+        });
+
+        decreaseTextBtn.addEventListener('click', () => {
+            let currentSize = getCurrentFontSize();
+            if (currentSize > 12) {
+                const newSize = currentSize - 1;
+                rootElement.style.setProperty('--base-font-size', `${newSize}px`);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
